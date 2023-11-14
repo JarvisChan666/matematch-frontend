@@ -1,0 +1,9 @@
+/node_modules/**
+/public/*
+**/*.svg
+**/*.sh
+
+build
+dist
+coverage
+.idea
