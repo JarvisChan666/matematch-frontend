@@ -1,18 +1,26 @@
-# Vue 3 + TypeScript + Vite
+# Project Title
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+This is a Vue.js project that uses Vant for UI components and Vue Router for navigation. The project is set up with a basic layout component that includes a navigation bar and a tab bar.
 
-## Recommended IDE Setup
+## Description
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+This project is a single-page application (SPA) built with Vue.js. It uses Vant for UI components, providing a modern and responsive user interface. Vue Router is used for navigation, and a facade pattern is applied to simplify the navigation logic.
 
-## Type Support For `.vue` Imports in TS
+## Installation
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+1. Clone the repository: `git clone https://github.com/yourusername/your-repo.git`
+2. Navigate to the project directory: `cd your-repo`
+3. Install dependencies: `npm install`
+4. Start the development server: `npm run serve`
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+## Usage
 
-1. Disable the built-in TypeScript Extension
-   1. Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-   2. Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+After installation, you can access the application at `http://localhost:8080` (or another port if 8080 is occupied). You can navigate between pages using the tab bar at the bottom of the page.
+
+## Contributing
+
+Contributions are welcome! Please read the contributing guidelines before getting started.
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
