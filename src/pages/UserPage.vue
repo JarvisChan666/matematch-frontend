@@ -62,16 +62,6 @@ const edit = (editKey: string, editName: string, currentValue: string) => {
     },
   });
 };
-// const userInfo = [
-//   { key: 'username', name: '昵称' },
-//   { key: 'userAccount', name: '账号' },
-//   { key: 'avatarUrl', name: '头像' },
-//   { key: 'gender', name: '性别' },
-//   { key: 'phone', name: '电话' },
-//   { key: 'email', name: '邮箱' },
-//   { key: 'createTime', name: '创建时间' },
-//   { key: 'planetCode', name: '星球编号' },
-// ];
 </script>
 
 <style scoped></style>
