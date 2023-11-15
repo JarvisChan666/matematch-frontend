@@ -1,25 +1,33 @@
-import {createApp} from 'vue'
-import './style.css'
-import App from './App.vue'
-// import {Button} from 'vant';
+// Import Vue and createApp function
+import { createApp } from 'vue';
+
+// Import global styles
+import './style.css';
+
+// Import App component
+import App from './App.vue';
+
+// Import Vant components and styles
+
 import 'vant/lib/index.css';
-import {NavBar} from 'vant';
-// import {Icon} from 'vant';
 import Vant from 'vant';
-import routes from './routes/route'
+
+// Import Vue Router and routes
 import * as VueRouter from 'vue-router';
+import routes from './routes/route';
 
-const app = createApp(App);
+// Create a router
 const router = VueRouter.createRouter({
-    // 内部提供了 history 模式的实现。为了简单起见，我们在这里使用 hash 模式。
-    history: VueRouter.createWebHashHistory(),
-    routes, // `routes: routes` 的缩写
-})
+  history: VueRouter.createWebHashHistory(),
+  routes,
+});
 
-// 3. 注册你需要的组件
-// app.use(Button)
-// app.use(Icon)
-app.use(NavBar)
-app.use(Vant)
-app.use(router)
-    .mount('#app')
+// Create a new Vue app instance
+const app = createApp(App);
+
+// Register Vant components and Vue Router
+
+app.use(Vant);
+app.use(router);
+// Mount the app to the DOM
+app.mount('#app');
