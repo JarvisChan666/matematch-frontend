@@ -11,6 +11,7 @@ import App from './App.vue';
 
 import 'vant/lib/index.css';
 import Vant from 'vant';
+import { Lazyload } from 'vant';
 
 // Import Vue Router and routes
 import * as VueRouter from 'vue-router';
@@ -29,5 +30,9 @@ const app = createApp(App);
 
 app.use(Vant);
 app.use(router);
+app.use(Lazyload);
+app.use(Lazyload, {
+  lazyComponent: true,
+});
 // Mount the app to the DOM
 app.mount('#app');
