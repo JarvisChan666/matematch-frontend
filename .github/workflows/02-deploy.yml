@@ -1,4 +1,4 @@
-name: CI/CD
+name: CICD
 # 触发条件为 push
 on:
   push:
