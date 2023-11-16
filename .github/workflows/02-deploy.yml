@@ -21,7 +21,7 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: 20
-      - name: 打包镜像, 上传 Docker Hub
+      - name: 打包镜像
         run: |
           docker login -u ${{ secrets.REGISTRY_USERNAME }} -p ${{ secrets.REGISTRY_PASSWORD }}
           docker build --platform linux/amd64 -t matematch-frontend:1.0 .
