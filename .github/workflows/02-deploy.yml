@@ -30,7 +30,7 @@ jobs:
       - name: 登录服务器, 执行脚本
         uses: jarvischan666/matematch-frontend@master
         with:
-          host: ${{ secrets.REMOTE_HOST }}
+          host: 20.62.167.165
           username: jarvis
           password: ${{ secrets.REMOTE_PASSWORD }}
           # 执行脚本
