@@ -3,7 +3,7 @@ name: CICD
 on: [push] # run this action in every push
 jobs:
   check:
-  runs-on: ububtu-latest
+  runs-on: ubuntu-latest
   steps:
     - name: Checkout Source Code
       uses: actions/checkout@v3
