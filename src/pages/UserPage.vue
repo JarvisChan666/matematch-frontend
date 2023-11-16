@@ -3,37 +3,37 @@
     <!-- TODO 骨架优化，后端请求到后渲染 -->
     <!-- <van-skeleton v-if="isLoading" row="4" :animate="true" />
     <div v-else> -->
-      <van-cell
-        title="昵称"
-        :value="user.username"
-        is-link
-        to="/user/edit"
-        @click="edit('username', '昵称', user.username)"
-      />
-      <van-cell title="账号" :value="user.userAccount" />
-      <van-cell title="头像" to="/user/edit">
-        <img :src="user.avatarUrl" style="height: 40px" />
-      </van-cell>
-      <van-cell
-        title="性别"
-        :value="user.gender"
-        to="/user/edit"
-        @click="edit('gender', '性别', user.gender)"
-      />
-      <van-cell
-        title="电话"
-        :value="user.phone"
-        to="/user/edit"
-        @click="edit('phone', '电话', user.phone)"
-      />
-      <van-cell
-        title="邮箱"
-        :value="user.email"
-        to="/user/edit"
-        @click="edit('email', '邮箱', user.email)"
-      />
-      <van-cell title="注册时间" :value="user.createTime" to="/user/edit" />
-      <van-cell title="星球编号" :value="user.planetCode" />
+    <van-cell
+      title="昵称"
+      :value="user.username"
+      is-link
+      to="/user/edit"
+      @click="edit('username', '昵称', user.username)"
+    />
+    <van-cell title="账号" :value="user.userAccount" />
+    <van-cell title="头像" to="/user/edit">
+      <img :src="user.avatarUrl" style="height: 40px" />
+    </van-cell>
+    <van-cell
+      title="性别"
+      :value="user.gender"
+      to="/user/edit"
+      @click="edit('gender', '性别', user.gender)"
+    />
+    <van-cell
+      title="电话"
+      :value="user.phone"
+      to="/user/edit"
+      @click="edit('phone', '电话', user.phone)"
+    />
+    <van-cell
+      title="邮箱"
+      :value="user.email"
+      to="/user/edit"
+      @click="edit('email', '邮箱', user.email)"
+    />
+    <van-cell title="注册时间" :value="user.createTime" to="/user/edit" />
+    <van-cell title="星球编号" :value="user.planetCode" />
     <!-- </div> -->
     <!-- TODO 优化 -->
   </div>

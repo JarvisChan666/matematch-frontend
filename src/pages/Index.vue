@@ -27,7 +27,7 @@ const imageList = [
 </template>
 
 <style scoped>
-  img {
+img {
   max-width: 100%;
   height: auto;
 }
