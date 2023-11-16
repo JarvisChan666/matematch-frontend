@@ -4,5 +4,4 @@ import { ref } from 'vue';
 
 <template></template>
 
-
 <style scoped></style>

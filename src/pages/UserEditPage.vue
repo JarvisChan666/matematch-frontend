@@ -17,14 +17,13 @@ import { useRoute, useRouter } from 'vue-router';
 const route = useRoute();
 const router = useRouter();
 
-
 const editUser = ref({
   editKey: route.query.editKey,
   editName: route.query.editName,
   currentValue: route.query.currentValue,
 });
 
-console.log(editUser)
+console.log(editUser);
 
 const onSubmit = () => {
   // 在这里处理表单数据
