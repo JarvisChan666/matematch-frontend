@@ -1,5 +1,5 @@
 // user.d.ts
-export type userType {
+export type userType = {
   username: string;
   id: number;
   userAccount: string;

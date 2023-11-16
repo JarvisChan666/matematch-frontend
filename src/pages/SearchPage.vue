@@ -25,16 +25,16 @@
 
 <script setup>
 import { ref, computed } from 'vue';
-import { Tag, Search, Icon, Divider, Row, Col } from 'vant';
+// import { Tag, Search, Icon, Divider, Row, Col } from 'vant';
 
 // 标签数据
 const tags = ref([
-  { name: '大一', color: 'blue' },
-  { name: '大二', color: 'blue' },
-  { name: '大三', color: 'blue' },
-  { name: '大四', color: 'blue' },
-  { name: '男', color: 'red' },
-  { name: '女', color: 'red' },
+  { name: '大一', color: 'blue', category: '身份' },
+  { name: '大二', color: 'blue', category: '身份' },
+  { name: '大三', color: 'blue', category: '身份' },
+  { name: '大四', color: 'blue', category: '身份' },
+  { name: '男', color: 'red', category: '性别' },
+  { name: '女', color: 'red', category: '性别' },
 ]);
 
 // 搜索词
