@@ -10,4 +10,4 @@ jobs:
       - name: Install and Run Check Script
         run: |
           yarn install
-          yarn prettier --check ./source
+          yarn prettier --check ./src
