@@ -3,11 +3,11 @@ name: CICD
 on: [push] # run this action in every push
 jobs:
   check:
-  runs-on: ubuntu-latest
-  steps:
-    - name: Checkout Source Code
-      uses: actions/checkout@v3
-    - name: Install and Run Check Script
-      run: |
-        yarn install
-        yarn prettier --check ./source
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v3
+      - name: Install and Run Check Script
+        run: |
+          yarn install
+          yarn prettier --check ./source
