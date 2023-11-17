@@ -28,10 +28,10 @@ jobs:
           docker tag matematch-frontend:1.0 ${{ secrets.DOCKER_REPOSITORY }}
           docker push ${{ secrets.DOCKER_REPOSITORY }}
       - name: 登录服务器, 执行脚本
-        uses: jarvischan666/matematch-frontend@master
+        uses: appleboy/ssh-action@master
         with:
           host: 20.62.167.165
-          username: jarvis
+          username: ${{ secrets.REMOTE_HOST }}
           password: ${{ secrets.REMOTE_PASSWORD }}
           # 执行脚本
           script: |
