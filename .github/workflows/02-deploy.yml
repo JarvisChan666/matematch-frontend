@@ -35,7 +35,6 @@ jobs:
           username: ${{ secrets.REMOTE_USERNAME }}
           password: ${{ secrets.REMOTE_PASSWORD }}
           key: ${{ secrets.REMOTE_KEY }}
-          # 执行脚本
           script: |
             docker pull jarvischan630/matematch-frontend:1.0
             docker run --name matematch-frontend -d -p 8081:80 jarvischan630/matematch-frontend:1.0
