@@ -30,9 +30,11 @@ jobs:
       - name: 登录服务器, 执行脚本
         uses: appleboy/ssh-action@master
         with:
-          host: 20.62.167.165
-          username: ${{ secrets.REMOTE_HOST }}
-          password: ${{ secrets.TOKEN }}
+          host: ${{ secrets.REMOTE_HOST }}
+          port: 22
+          username: ${{ secrets.REMOTE_USERNAME }}
+          password: ${{ secrets.REMOTE_PASSWORD }}
+          key: ${{ secrets.REMOTE_KEY }}
           # 执行脚本
           script: |
             docker pull jarvischan630/matematch-frontend:1.0
