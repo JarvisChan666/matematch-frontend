@@ -32,7 +32,7 @@ jobs:
         with:
           host: 20.62.167.165
           username: ${{ secrets.REMOTE_HOST }}
-          password: ${{ secrets.REMOTE_PASSWORD }}
+          password: ${{ secrets.TOKEN }}
           # 执行脚本
           script: |
             ./deploy.sh
