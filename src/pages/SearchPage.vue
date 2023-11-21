@@ -1,18 +1,18 @@
 <template>
   <div>
-    <van-search v-model="search" placeholder="请输入搜索内容" />
+    <van-search v-model="search" placeholder="请输入搜索内容"/>
     <div style="font-size: 20px; font-weight: bold; margin-bottom: 10px">
       已选择的标签：
       <van-row gutter="16">
         <van-col v-for="tag in selectedTags" :key="tag">
           <van-tag :color="getTagColor(tag)" @click="removeTag(tag)">
             {{ tag }}
-            <van-icon name="cross" />
+            <van-icon name="cross"/>
           </van-tag>
         </van-col>
       </van-row>
     </div>
-    <van-divider />
+    <van-divider/>
     <van-row gutter="16">
       <van-col v-for="tag in filteredTags" :key="tag.name">
         <van-tag :color="tag.color" @click="selectTag(tag.name)">
@@ -25,8 +25,8 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue';
-import { useRouter } from 'vue-router';
+import {ref, computed} from 'vue';
+import {useRouter} from 'vue-router';
 
 const router = useRouter();
 
@@ -42,17 +42,17 @@ const handleSearch = () => {
 
 // 标签数据
 const tags = ref([
-  { name: '大一', color: 'blue' },
-  { name: '大二', color: 'blue' },
-  { name: '大三', color: 'blue' },
-  { name: '大四', color: 'blue' },
-  { name: '男', color: 'red' },
-  { name: '女', color: 'red' },
-   { name: 'java', color: 'green' },
-  { name: 'python', color: 'green' },
-  { name: 'css', color: 'green' },
-  { name: 'php', color: 'green' },
-  { name: 'machinelearning', color: 'green' },
+  {name: '大一', color: 'blue'},
+  {name: '大二', color: 'blue'},
+  {name: '大三', color: 'blue'},
+  {name: '大四', color: 'blue'},
+  {name: '男', color: 'red'},
+  {name: '女', color: 'red'},
+  {name: 'java', color: 'green'},
+  {name: 'python', color: 'green'},
+  {name: 'css', color: 'green'},
+  {name: 'php', color: 'green'},
+  {name: 'machinelearning', color: 'green'},
 ]);
 
 // 搜索词
@@ -67,8 +67,8 @@ const filteredTags = computed(() => {
     return tags.value.filter((tag) => !selectedTags.value.includes(tag.name));
   }
   return tags.value
-    .filter((tag) => tag.name.includes(search.value))
-    .filter((tag) => !selectedTags.value.includes(tag.name));
+      .filter((tag) => tag.name.includes(search.value))
+      .filter((tag) => !selectedTags.value.includes(tag.name));
 });
 
 // 选择标签
