@@ -4,6 +4,7 @@ import SearchPage from '../pages/SearchPage.vue';
 import UserPage from '../pages/UserPage.vue';
 import UserEditPage from '../pages/UserEditPage.vue';
 import SearchResultPage from '../pages/SearchResultPage.vue';
+import SkeletonPage from "../pages/SkeletonPage.vue";
 const routes = [
   {
     path: '/',
@@ -35,5 +36,11 @@ const routes = [
     name: 'List',
     component: SearchResultPage,
   },
+  {
+    path: '/user/list/skeleton',
+    name: 'Skeleton',
+    component: SkeletonPage,
+    meta: { showSkeleton: true },
+  },
 ];
-export default routes;
+export default routes

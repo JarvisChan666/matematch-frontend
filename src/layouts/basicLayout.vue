@@ -41,7 +41,7 @@ const onClickRight = () => navigate.toSearch();
     <!-- Search icon on the right side of the navigation bar -->
     <template #right>
       <a class="search-btn">
-        <img src="../../src/assets/search_icon.svg" alt="Search Icon" />
+        <img src="../static/search_icon.svg" alt="Search Icon" />
       </a>
     </template>
   </van-nav-bar>

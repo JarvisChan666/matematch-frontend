@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { ref } from 'vue';
 
 const imageList = [
   'https://wallpapercave.com/wp/wp7991295.jpg',
