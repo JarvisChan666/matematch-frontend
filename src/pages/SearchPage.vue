@@ -20,21 +20,39 @@
         </van-tag>
       </van-col>
     </van-row>
+    <van-button @click="handleSearch">搜索</van-button>
   </div>
 </template>
 
 <script setup>
 import { ref, computed } from 'vue';
-// import { Tag, Search, Icon, Divider, Row, Col } from 'vant';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+
+const handleSearch = () => {
+  router.push({
+    name: 'List', //push params to SearchResultPage
+    query: {
+      search: search.value,
+      tags: selectedTags.value.join(','),
+    },
+  });
+};
 
 // 标签数据
 const tags = ref([
-  { name: '大一', color: 'blue', category: '身份' },
-  { name: '大二', color: 'blue', category: '身份' },
-  { name: '大三', color: 'blue', category: '身份' },
-  { name: '大四', color: 'blue', category: '身份' },
-  { name: '男', color: 'red', category: '性别' },
-  { name: '女', color: 'red', category: '性别' },
+  { name: '大一', color: 'blue' },
+  { name: '大二', color: 'blue' },
+  { name: '大三', color: 'blue' },
+  { name: '大四', color: 'blue' },
+  { name: '男', color: 'red' },
+  { name: '女', color: 'red' },
+   { name: 'java', color: 'green' },
+  { name: 'python', color: 'green' },
+  { name: 'css', color: 'green' },
+  { name: 'php', color: 'green' },
+  { name: 'machinelearning', color: 'green' },
 ]);
 
 // 搜索词

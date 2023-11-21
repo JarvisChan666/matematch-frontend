@@ -10,7 +10,7 @@ import App from './App.vue';
 // Import Vant components and styles
 
 import 'vant/lib/index.css';
-import Vant from 'vant';
+import Vant, {Dialog, Popover, Toast} from 'vant';
 import { Lazyload } from 'vant';
 
 // Import Vue Router and routes
@@ -27,10 +27,12 @@ const router = VueRouter.createRouter({
 const app = createApp(App);
 
 // Register Vant components and Vue Router
-
 app.use(Vant);
 app.use(router);
 app.use(Lazyload);
+app.use(Dialog);
+app.use(Popover);
+app.use(Toast);
 app.use(Lazyload, {
   lazyComponent: true,
 });
