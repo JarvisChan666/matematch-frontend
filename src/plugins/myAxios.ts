@@ -4,7 +4,7 @@ import axios from 'axios';
 
 const myAxios = axios.create({
   // baseURL: 'http://20.62.167.165:8080/api',
-  baseURL: 'http://192.168.43.104:8080/api',
+  baseURL: 'https://192.168.43.104:8080/api',
 });
 
 // 拦截器
