@@ -1,41 +1,46 @@
 // Import Vue and createApp function
-import {createApp} from 'vue';
+import { createApp } from 'vue';
 
 // Import global styles
 import './style.css';
-
+import pinia from './store';
 // Import App component
 import App from './App.vue';
-
+// import authRouter from './middlewares/auth';
 // Import Vant components and styles
 
 import 'vant/lib/index.css';
-import Vant, {Dialog, Popover, Skeleton, Toast} from 'vant';
-import {Lazyload} from 'vant';
+import Vant from 'vant';
+import { Lazyload } from 'vant';
+import { createPinia } from 'pinia';
+import { setupRouterGuard } from './middlewares/auth';
+
+import useUserStore from './store/user';
 
 // Import Vue Router and routes
-import * as VueRouter from 'vue-router';
-import routes from './routes/route';
+import router from './router';
 
-// Create a router
-const router = VueRouter.createRouter({
-    history: VueRouter.createWebHashHistory(),
-    routes,
-});
+import './middlewares/auth';
 
 // Create a new Vue app instance
 const app = createApp(App);
+const pinia = createPinia();
 
 // Register Vant components and Vue Router
 app.use(Vant);
 app.use(router);
+app.use(pinia);
 app.use(Lazyload);
-app.use(Dialog);
-app.use(Popover);
-app.use(Toast);
-app.use(Skeleton);
-app.use(Lazyload, {
-    lazyComponent: true,
-});
+// app.use(authRouter);
 // Mount the app to the DOM
 app.mount('#app');
+
+// After the app is mounted, restore user info from localStorage
+const userStore = useUserStore();
+if (localStorage.getItem('user')) {
+	const userData = JSON.parse(localStorage.getItem('user'));
+	userStore.userAccount = userData.userAccount;
+	userStore.userInfo = userData;
+}
+
+setupRouterGuard(app);

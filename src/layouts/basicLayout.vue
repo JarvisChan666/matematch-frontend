@@ -55,7 +55,7 @@ const onClickRight = () => navigate.toSearch();
   <van-tabbar route @change="onChange" v-model="active">
     <van-tabbar-item to="/" icon="home-o" name="index">Home</van-tabbar-item>
     <van-tabbar-item to="/team" icon="search" name="team">Search</van-tabbar-item>
-    <van-tabbar-item to="/user" icon="friends-o" name="user">Me</van-tabbar-item>
+    <van-tabbar-item to="/user/info" icon="friends-o" name="user">Me</van-tabbar-item>
   </van-tabbar>
 </template>
 
