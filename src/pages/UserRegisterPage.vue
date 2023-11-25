@@ -43,13 +43,13 @@ const userData = reactive({
 const userStore = useUserStore();
 
 const onLogin = async () => {
-  // login action is an async, so it will return promise
-  await userStore.login(userData);
-  userData.username = '';
-  userData.password = '';
+	// login action is an async, so it will return promise
+	await userStore.login(userData);
+	userData.username = '';
+	userData.password = '';
 };
 
 const onLogout = () => {
-  userStore.logout();
-}
+	userStore.logout();
+};
 </script>

@@ -54,7 +54,6 @@ const onLogin = async () => {
 	userData.userPassword = '';
 };
 
-
 const onLogout = () => {
 	userStore.logout();
 };
