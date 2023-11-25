@@ -30,6 +30,7 @@ import useUserStore from '../store/user';
 import { reactive, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { provide } from 'vue';
+import { showSuccessToast, showFailToast } from 'vant';
 
 // reactive never use 'value'
 // 封装起来
@@ -43,9 +44,6 @@ const userStore = useUserStore();
 const router = useRouter();
 
 const onLogin = async () => {
-	// login action is an async, so it will return promise
-	// 进入到user模块，调用login函数，请求后端
-	// 一般用await都要接受个result
 	const res = await userStore.login(userData);
 	if (res) {
 		await userStore.getCurrentUser();
@@ -55,6 +53,7 @@ const onLogin = async () => {
 	userData.userAccount = '';
 	userData.userPassword = '';
 };
+
 
 const onLogout = () => {
 	userStore.logout();
