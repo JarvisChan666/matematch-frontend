@@ -41,6 +41,7 @@
 		/>
 		<van-cell title="注册时间" :value="userInfo.createTime" to="/user/edit" />
 		<van-cell title="星球编号" :value="userInfo.planetCode" />
+		<van-button round block type="danger" @click="handleLogout"> 退出登录 </van-button>
 		<!-- </div> -->
 		<!-- TODO 优化 -->
 	</div>
@@ -52,12 +53,20 @@ import { useRouter } from 'vue-router';
 import { provide } from 'vue';
 import { inject } from 'vue';
 import useUserStore from '../store/user';
+import { LOGIN_URL } from '../common/constants';
 
 const userStore = useUserStore();
 const userInfo = userStore.userInfo;
 console.log(userInfo);
 
 const router = useRouter();
+
+const handleLogout = async () => {
+	const res = userStore.logout();
+	if (res) {
+		router.replace(LOGIN_URL);
+	}
+};
 
 // 动态路由
 const edit = (editKey: string, editName: string, currentValue: string) => {
