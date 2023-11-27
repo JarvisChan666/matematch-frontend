@@ -15,20 +15,5 @@ export function setupRouterGuard(app) {
 		// If a user is logged in, allow navigation
 		// Otherwise, redirect to the login page
 		return user ? next() : next('/user/login');
-
-		// if (to.path === '/user/login') {
-		// 	console.log('auth' + userStore.userInfo);
-		// 	next();
-		// } else {
-		// 	userStore.getCurrentUser().then((user) => {
-		// 		if (user) {
-		// 			console.log('auth1');
-		// 			next();
-		// 		} else {
-		// 			console.log('auth2');
-		// 			next('/user/login');
-		// 		}
-		// 	});
-		// }
 	});
 }
