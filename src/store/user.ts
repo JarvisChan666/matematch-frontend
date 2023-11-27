@@ -3,12 +3,14 @@ import { defineStore } from 'pinia';
 import axios from '../plugins/myAxios';
 import { showSuccessToast, showFailToast } from 'vant';
 import { userType } from '../models/user';
-
-const LOGIN_URL = '/user/login';
-const REGISTER_URL = 'user/register';
-const CURRENT_USER_URL = '/user/current';
-const UPDATE_USER_URL = '/user/update';
-
+import router from '../router';
+import {
+	LOGIN_URL,
+	LOGOUT_URL,
+	REGISTER_URL,
+	CURRENT_USER_URL,
+	UPDATE_USER_URL,
+} from '../common/constants';
 // 类型优化
 // interface User {
 // 	userAccount: string;
@@ -28,37 +30,61 @@ const useUserStore = defineStore('user', {
 
 	actions: {
 		async login(userData: userType) {
-			const res = await axios.post(LOGIN_URL, userData);
-			const { data, code, description } = res.data;
-			if (code === 0) {
-				this.userInfo = data;
-				showSuccessToast('登录成功');
-				return true;
-			} else {
-				showFailToast('登录成功, ' + description);
+			try {
+				const res = await axios.post(LOGIN_URL, userData);
+				const { data, description } = res.data;
+				// 用data判断，后端登录失败还是返回code=0
+				if (data) {
+					this.userInfo = data;
+					showSuccessToast('登录成功');
+					return true;
+				} else {
+					showFailToast('登录失败 ' + description);
+					return false;
+				}
+			} catch (error) {
+				console.error('Login failed', error);
 				return false;
 			}
 		},
 
 		async register(userData: userType) {
-			const res = await axios.post(REGISTER_URL, userData);
-			const { data, code, description } = res.data;
-			if (code === 0) {
-				this.userInfo = data;
-				showSuccessToast('注册成功');
-				// localStorage.setItem('user', JSON.stringify(data));
-				return true;
-			} else {
-				showFailToast('注册失败, ' + description);
+			try {
+				const res = await axios.post(REGISTER_URL, userData);
+				const { data, code, description } = res.data;
+				if (code === 0) {
+					this.userInfo = data;
+					showSuccessToast('注册成功');
+					// localStorage.setItem('user', JSON.stringify(data));
+					return true;
+				} else {
+					showFailToast('注册失败 ' + description);
+					return false;
+				}
+			} catch (error) {
+				// 处理网络错误或其他导致 axios.post 失败的错误
+				console.error('Register failed', error);
 				return false;
 			}
 		},
 
 		// TODO:退出功能
-		logout() {
-			this.userAccount = '';
-			// Remove user data from localStorage
-			localStorage.removeItem('user');
+		async logout() {
+			try {
+				const res = await axios.post(LOGOUT_URL);
+				const { code, description } = res.data;
+				// 清除客户端的用户数据
+				if (code == 0) {
+					this.userInfo = {};
+					showSuccessToast('退出成功');
+					return true;
+				} else {
+					showFailToast('退出失败 ' + description);
+					return false;
+				}
+			} catch (error) {
+				console.error('Logout failed', error);
+			}
 		},
 
 		async getCurrentUser() {
@@ -68,9 +94,15 @@ const useUserStore = defineStore('user', {
 				console.log('get current user' + data);
 				if (code === 0) {
 					return data;
+				} else {
+					// 只有当当前路由不是登录路由时，才显示失败的 Toast 消息
+					if (router.currentRoute.value.path !== LOGIN_URL) {
+						showFailToast('获取用户异常');
+					}
+					return false;
 				}
 			} catch (error) {
-				showFailToast('获取用户异常');
+				console.error('get user failed', error);
 			}
 			return false;
 		},
@@ -84,7 +116,7 @@ const useUserStore = defineStore('user', {
 				this.userInfo = updateUser;
 				showSuccessToast('更新信息成功');
 			} else {
-				showFailToast('失败文案');
+				showFailToast('更新信息失败');
 			}
 		},
 	},
