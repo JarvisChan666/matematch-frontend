@@ -57,8 +57,6 @@ const userStore = useUserStore();
 const userInfo = userStore.userInfo;
 console.log(userInfo);
 
-const isLoading = ref(true);
-
 const router = useRouter();
 
 // 动态路由

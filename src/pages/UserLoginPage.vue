@@ -34,15 +34,24 @@ import { reactive, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { provide } from 'vue';
 import { showSuccessToast, showFailToast } from 'vant';
+import { userType } from '../models/user';
 
 // reactive never use 'value'
 // 封装起来
-const userData = reactive({
+const userData: userType = reactive({
 	userAccount: '',
 	userPassword: '',
 });
 
 const userStore = useUserStore();
+
+// Get the username and password from the user store
+const userAccountFromStore = userStore.lastRegisteredUserAccount;
+const userPasswordFromStore = userStore.lastRegisteredUserPassword;
+
+// Fill the login form with the username and password
+userData.userAccount = userAccountFromStore || '';
+userData.userPassword = userPasswordFromStore || '';
 
 const router = useRouter();
 

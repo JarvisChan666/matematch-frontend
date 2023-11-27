@@ -19,40 +19,39 @@ const UPDATE_USER_URL = '/user/update';
 const useUserStore = defineStore('user', {
 	state: () => ({
 		userInfo: {} as { [key: string]: any },
+		// 临时变量 注册完后直接填充登陆表单
+		lastRegisteredUserAccount: '',
+		lastRegisteredUserPassword: '',
 	}),
 
 	getters: {},
 
 	actions: {
 		async login(userData: userType) {
-			try {
-				const res = await axios.post(LOGIN_URL, userData);
-				const { data, code } = res.data;
-				if (code === 0) {
-					this.userInfo = data;
-					// 本地存储可选
-					// localStorage.setItem('user', JSON.stringify(data));
-					return true;
-				}
-			} catch (error) {
-				showFailToast('登陆失败');
+			const res = await axios.post(LOGIN_URL, userData);
+			const { data, code, description } = res.data;
+			if (code === 0) {
+				this.userInfo = data;
+				showSuccessToast('登录成功');
+				return true;
+			} else {
+				showFailToast('登录成功, ' + description);
+				return false;
 			}
-			return false;
 		},
 
 		async register(userData: userType) {
-			try {
-				const res = await axios.post(REGISTER_URL, userData);
-				const { data, code } = res.data;
-				if (code === 0) {
-					this.userInfo = data;
-					localStorage.setItem('user', JSON.stringify(data));
-					return true;
-				}
-			} catch (error) {
-				showFailToast('登陆失败');
+			const res = await axios.post(REGISTER_URL, userData);
+			const { data, code, description } = res.data;
+			if (code === 0) {
+				this.userInfo = data;
+				showSuccessToast('注册成功');
+				// localStorage.setItem('user', JSON.stringify(data));
+				return true;
+			} else {
+				showFailToast('注册失败, ' + description);
+				return false;
 			}
-			return false;
 		},
 
 		// TODO:退出功能
@@ -78,7 +77,7 @@ const useUserStore = defineStore('user', {
 
 		// 要编辑的是editkey字段，当前值为currentValue
 		// editKey=username&editName=昵称&currentValue=jarvis
-		async updateUser(updateUser: any) {
+		async updateUser(updateUser: userType) {
 			// 是否更新用户用put请求？
 			const res = await axios.post(UPDATE_USER_URL, updateUser);
 			if (res.data.code === 0) {

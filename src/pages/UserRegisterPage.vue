@@ -3,10 +3,10 @@
 		<van-cell-group inset>
 			<van-field
 				v-model="userData.userAccount"
-				name="用户名"
-				label="用户名"
-				placeholder="用户名"
-				:rules="[{ required: true, message: '请填写用户名' }]"
+				name="账号"
+				label="账号"
+				placeholder="账号"
+				:rules="[{ required: true, message: '请填写账号' }]"
 			/>
 			<van-field
 				v-model="userData.userPassword"
@@ -44,15 +44,16 @@
 import useUserStore from '../store/user';
 import { reactive } from 'vue';
 import { useRouter } from 'vue-router';
+import { USER_ACCOUNT, USER_PASSWORD, CHECK_PASSWORD, PLANET_CODE } from '../common/constants';
 
 const router = useRouter();
 
 // reactive never use 'value'
 const userData = reactive({
-	userAccount: '',
-	userPassword: '',
-	checkPassword: '',
-	planetCode: '',
+	[USER_ACCOUNT]: '',
+	[USER_PASSWORD]: '',
+	[CHECK_PASSWORD]: '',
+	[PLANET_CODE]: '',
 });
 
 const userStore = useUserStore();
@@ -62,6 +63,8 @@ const onRegister = async () => {
 	const res = await userStore.register(userData);
 	if (res) {
 		await userStore.getCurrentUser();
+		userStore.lastRegisteredUserAccount = userData[USER_ACCOUNT];
+		userStore.lastRegisteredUserPassword = userData[USER_PASSWORD];
 		router.replace('/user/login');
 	}
 	// 清空注册表单
