@@ -7,6 +7,7 @@ const myAxios = axios.create({
 	baseURL: 'http://localhost:8080/api',
 });
 
+// cookie保存登录态
 myAxios.defaults.withCredentials = true;
 
 // 拦截器

@@ -5,6 +5,7 @@
 \- [中文](#中文)
 
 ## 中文
+
 ### 项目简介
 
 这是一个基于 Springboot 和 Vue3 的移动端 H5 网站，旨在帮助用户匹配到兴趣相同的伙伴。项目具有基础的登录、更新用户信息、匹配用户、组队、推荐相似用户等功能。
@@ -58,8 +59,8 @@ yarn add dev
 
 MIT
 
-
 ## English
+
 ### Project Introduction
 
 This is a mobile H5 website based on Springboot and Vue3, aimed at helping users match partners with the same interests. The project has basic functions such as login, update user information, match users, team up, recommend similar users, etc.
@@ -112,4 +113,3 @@ Welcome any form of contribution, and feel free to raise an Issue for any proble
 ### License
 
 MIT
-

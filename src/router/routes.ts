@@ -35,6 +35,7 @@ export const routes: Array<RouteRecordRaw> = [
 				path: 'login',
 				name: 'Login',
 				component: UserLoginPage,
+				meta: { layout: 'UserLayout' },
 			},
 			{
 				path: 'info',
@@ -45,6 +46,7 @@ export const routes: Array<RouteRecordRaw> = [
 				path: 'register',
 				name: 'Register',
 				component: UserRegisterPage,
+				meta: { layout: 'UserLayout' },
 			},
 			{
 				path: 'edit',

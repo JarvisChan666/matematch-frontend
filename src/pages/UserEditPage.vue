@@ -1,12 +1,12 @@
 <template>
-	<van-form @submit="onSubmit">
+	<van-form>
 		<van-field
 			v-model="newValue"
 			:name="editUser.editKey"
 			:label="editUser.editName"
 			:placeholder="`请输入${newValue}`"
 		/>
-		<van-button type="primary" native-type="submit">提交</van-button>
+		<van-button type="primary" native-type="submit" @click="onSubmit">提交</van-button>
 	</van-form>
 </template>
 

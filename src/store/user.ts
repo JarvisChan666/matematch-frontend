@@ -1,9 +1,11 @@
-// import axios from 'axios';
+// 共享组件用户状态
 import { defineStore } from 'pinia';
 import axios from '../plugins/myAxios';
 import { showSuccessToast, showFailToast } from 'vant';
+import { userType } from '../models/user';
 
 const LOGIN_URL = '/user/login';
+const REGISTER_URL = 'user/register';
 const CURRENT_USER_URL = '/user/current';
 const UPDATE_USER_URL = '/user/update';
 
@@ -16,21 +18,33 @@ const UPDATE_USER_URL = '/user/update';
 
 const useUserStore = defineStore('user', {
 	state: () => ({
-		userAccount: '',
-		//这里userInfo应该不重复，前两个用于登录
-		//方便userInfo[editkey]取值更新user信息
 		userInfo: {} as { [key: string]: any },
 	}),
 
 	getters: {},
 
 	actions: {
-		async login(userData: any) {
+		async login(userData: userType) {
 			try {
 				const res = await axios.post(LOGIN_URL, userData);
 				const { data, code } = res.data;
 				if (code === 0) {
-					this.userAccount = data.userAccount;
+					this.userInfo = data;
+					// 本地存储可选
+					// localStorage.setItem('user', JSON.stringify(data));
+					return true;
+				}
+			} catch (error) {
+				showFailToast('登陆失败');
+			}
+			return false;
+		},
+
+		async register(userData: userType) {
+			try {
+				const res = await axios.post(REGISTER_URL, userData);
+				const { data, code } = res.data;
+				if (code === 0) {
 					this.userInfo = data;
 					localStorage.setItem('user', JSON.stringify(data));
 					return true;

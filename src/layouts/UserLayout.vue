@@ -1,21 +1,16 @@
 <template>
 	<div class="user-layout">
-		<div class="centered">
-			<!-- <UserLoginPage /> -->
-			<router-view />
-		</div>
+		<router-view />
 	</div>
 </template>
 
-<script setup>
-import UserLoginPage from '../pages/UserLoginPage.vue';
-</script>
+<script setup></script>
 
 <style scoped>
-.centered {
+.user-layout {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	height: 100vh; /* Adjust as needed */
+	height: 100vh;
 }
 </style>

@@ -12,7 +12,7 @@ import App from './App.vue';
 import 'vant/lib/index.css';
 import Vant from 'vant';
 import { Lazyload } from 'vant';
-import { createPinia } from 'pinia';
+// import { createPinia } from 'pinia';
 import { setupRouterGuard } from './middlewares/auth';
 
 import useUserStore from './store/user';
@@ -21,6 +21,8 @@ import useUserStore from './store/user';
 import router from './router';
 
 import './middlewares/auth';
+
+import { createPinia } from 'pinia';
 
 // Create a new Vue app instance
 const app = createApp(App);
@@ -35,12 +37,19 @@ app.use(Lazyload);
 // Mount the app to the DOM
 app.mount('#app');
 
-// After the app is mounted, restore user info from localStorage
+// 刷新后仍展示用户信息
 const userStore = useUserStore();
-if (localStorage.getItem('user')) {
-	const userData = JSON.parse(localStorage.getItem('user'));
-	userStore.userAccount = userData.userAccount;
-	userStore.userInfo = userData;
-}
+userStore.getCurrentUser().then((data) => {
+	console.log(data.userAccount);
+	// userStore.userAccount = data.userAccount;
+	userStore.userInfo = data;
+});
+
+// 本地存储可选
+// if (localStorage.getItem('user')) {
+// 	const userData = JSON.parse(localStorage.getItem('user'));
+// 	userStore.userAccount = userData.userAccount;
+// 	userStore.userInfo = userData;
+// }
 
 setupRouterGuard(app);

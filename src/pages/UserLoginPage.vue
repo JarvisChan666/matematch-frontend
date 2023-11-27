@@ -1,5 +1,5 @@
 <template>
-	<van-form @submit="onSubmit">
+	<van-form>
 		<van-cell-group inset>
 			<van-field
 				v-model="userData.userAccount"
@@ -21,6 +21,9 @@
 			<van-button round block type="primary" native-type="submit" @click="onLogin">
 				提交
 			</van-button>
+			<router-link to="/user/register" style="display: block; text-align: center; margin-top: 10px">
+				还没有注册？点击这里
+			</router-link>
 		</div>
 	</van-form>
 </template>
@@ -58,3 +61,5 @@ const onLogout = () => {
 	userStore.logout();
 };
 </script>
+
+<style scoped></style>
