@@ -6,7 +6,7 @@
 				name="账号"
 				label="账号"
 				placeholder="账号"
-				:rules="[{ required: true, message: '请填写账号' }]"
+				:rules="rules.userAccount"
 			/>
 			<van-field
 				v-model="userData.userPassword"
@@ -14,11 +14,11 @@
 				name="密码"
 				label="密码"
 				placeholder="密码"
-				:rules="[{ required: true, message: '请填写密码' }]"
+				:rules="rules.userPassword"
 			/>
 		</van-cell-group>
 		<div style="margin: 16px">
-			<van-button round block type="primary" native-type="submit" @click="onLogin">
+			<van-button round block type="primary" native-type="submit" @click="handleLogin">
 				提交
 			</van-button>
 			<router-link to="/user/register" style="display: block; text-align: center; margin-top: 10px">
@@ -35,6 +35,7 @@ import { useRouter } from 'vue-router';
 import { provide } from 'vue';
 import { showSuccessToast, showFailToast } from 'vant';
 import { userType } from '../models/user';
+import { USER_INFO_URL } from '../common/constants';
 
 // reactive never use 'value'
 // 封装起来
@@ -55,20 +56,22 @@ userData.userPassword = userPasswordFromStore || '';
 
 const router = useRouter();
 
-const onLogin = async () => {
+const handleLogin = async () => {
 	const res = await userStore.login(userData);
 	if (res) {
 		await userStore.getCurrentUser();
-		router.replace('/user/info');
+		router.replace(USER_INFO_URL);
 	}
 	// 清空登录表单
 	userData.userAccount = '';
 	userData.userPassword = '';
 };
 
-const onLogout = () => {
-	userStore.logout();
-};
+// 表单验证规则
+const rules = reactive({
+	userAccount: [{ required: true, message: '请填写账号' }],
+	userPassword: [{ required: true, message: '请填写密码' }],
+});
 </script>
 
 <style scoped></style>
