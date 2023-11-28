@@ -6,4 +6,7 @@ export default defineConfig({
 	base: '/matematch-frontend/',
 	// publicPath: './',
 	plugins: [vue()],
+	build: {
+		outDir: 'docs',
+	},
 });
