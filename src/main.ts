@@ -38,12 +38,18 @@ app.use(Lazyload);
 app.mount('#app');
 
 // 刷新后仍展示用户信息
-const userStore = useUserStore();
-userStore.getCurrentUser().then((data) => {
-	console.log(data.userAccount);
-	// userStore.userAccount = data.userAccount;
-	userStore.userInfo = data;
-});
+async function fetchUser() {
+	const userStore = useUserStore();
+	try {
+		const data = await userStore.getCurrentUser();
+		console.log(data.userAccount);
+		userStore.userInfo = data;
+	} catch (error) {
+		console.error('Failed to get current user:', error);
+	}
+}
+
+fetchUser();
 
 // 本地存储可选
 // if (localStorage.getItem('user')) {
