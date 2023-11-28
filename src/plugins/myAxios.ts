@@ -5,8 +5,8 @@ import axios from 'axios';
 const myAxios = axios.create({
 	// baseURL: 'https://192.168.43.104:8080/api',
 	// baseURL: 'https://localhost:8080/api',
-	// baseURL: 'http://localhost:8080/api',
-	baseURL: 'https://44.226.122.3/api/',
+	baseURL: 'http://localhost:8080/api',
+	// baseURL: 'https://44.226.122.3/api/',
 });
 
 // cookie保存登录态
