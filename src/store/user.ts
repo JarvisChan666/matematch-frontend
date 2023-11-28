@@ -96,7 +96,7 @@ const useUserStore = defineStore('user', {
 					return data;
 				} else {
 					// 只有当当前路由不是登录路由时，才显示失败的 Toast 消息
-					if (router.currentRoute.value.path !== LOGIN_URL) {
+					if (router.currentRoute.value.path !== (LOGIN_URL && REGISTER_URL)) {
 						showFailToast('获取用户异常');
 					}
 					return false;

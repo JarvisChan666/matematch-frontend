@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 import { routes } from './routes';
 // Create a router
+// histroy模式
 const router = createRouter({
 	history: createWebHistory(),
 	routes,
