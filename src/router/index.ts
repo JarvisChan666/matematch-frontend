@@ -3,7 +3,8 @@ import { routes } from './routes';
 // Create a router
 // histroy模式
 const router = createRouter({
-	history: createWebHistory(process.env.BASE_URL || '/matematch-frontend/'),
+	// history: createWebHistory()
+	history: createWebHistory('/matematch-frontend/'), //githubpage
 	// history: createWebHistory(),
 	routes,
 });
