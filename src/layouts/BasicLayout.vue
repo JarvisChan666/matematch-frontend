@@ -32,6 +32,7 @@ const onClickRight = () => navigate.toSearch();
 <template>
 	<!-- Navigation bar -->
 	<van-nav-bar
+		class="fixed-nav-bar"
 		title="Title"
 		left-text="返回"
 		left-arrow
@@ -47,15 +48,15 @@ const onClickRight = () => navigate.toSearch();
 	</van-nav-bar>
 
 	<!-- Main content area -->
-	<main id="content">
+	<main id="content" class="main-content">
 		<router-view />
 	</main>
 
 	<!-- Tab bar at the bottom of the page -->
 	<van-tabbar route @change="onChange" v-model="active">
-		<van-tabbar-item to="/" icon="home-o" name="index">Home</van-tabbar-item>
-		<van-tabbar-item to="/team" icon="search" name="team">Search</van-tabbar-item>
-		<van-tabbar-item to="/user/info" icon="friends-o" name="user">Me</van-tabbar-item>
+		<van-tabbar-item to="/" icon="home-o" name="home">Home</van-tabbar-item>
+		<van-tabbar-item to="/team" icon="friends-o" name="team">Team</van-tabbar-item>
+		<van-tabbar-item to="/user/info" icon="user-o" name="me">Me</van-tabbar-item>
 	</van-tabbar>
 </template>
 
@@ -72,5 +73,22 @@ const onClickRight = () => navigate.toSearch();
 	align-items: center;
 	cursor: pointer;
 	transition: 0.4s;
+}
+
+.fixed-nav-bar {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 1000; /* 设置一个较大的 z-index 值，以防止其他元素遮挡 nav-bar */
+}
+
+.main-content {
+	/* width: 100vw;
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between; */
+	padding-top: 50px; /* 根据你的 nav-bar 的高度来调整这个值 */
 }
 </style>

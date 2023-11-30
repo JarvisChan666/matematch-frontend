@@ -26,16 +26,19 @@
 			/>
 			<van-field
 				v-model="userData.planetCode"
-				name="星球编号"
-				label="星球编号"
-				placeholder="星球编号"
-				:rules="[{ required: true, message: '请填写星球编号' }]"
+				name="编号"
+				label="编号"
+				placeholder="编号"
+				:rules="[{ required: true, message: '请填写编号' }]"
 			/>
 		</van-cell-group>
 		<div style="margin: 16px">
 			<van-button round block type="primary" native-type="submit" @click="onRegister">
 				提交
 			</van-button>
+			<router-link to="/user/login" style="display: block; text-align: center; margin-top: 10px">
+				已经注册？点击这里登录
+			</router-link>
 		</div>
 	</van-form>
 </template>

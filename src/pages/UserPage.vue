@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="user-info-container">
 		<!-- TODO 骨架优化，后端请求到后渲染 -->
 		<!-- <van-skeleton v-if="isLoading" row="4" :animate="true" />
     <div v-else> -->
@@ -39,8 +39,8 @@
 			to="/user/edit"
 			@click="edit('email', '邮箱', userInfo.email)"
 		/>
-		<van-cell title="注册时间" :value="userInfo.createTime" to="/user/edit" />
-		<van-cell title="星球编号" :value="userInfo.planetCode" />
+		<van-cell title="编号" :value="userInfo.planetCode" />
+		<van-cell title="注册时间" :value="formatDate(userInfo.createTime)" to="/user/edit" />
 		<van-button round block type="danger" @click="handleLogout"> 退出登录 </van-button>
 		<!-- </div> -->
 		<!-- TODO 优化 -->
@@ -68,6 +68,11 @@ const handleLogout = async () => {
 	}
 };
 
+const formatDate = (dateString) => {
+	const date = new Date(dateString);
+	return date.toLocaleDateString();
+};
+
 // 动态路由
 const edit = (editKey: string, editName: string, currentValue: string) => {
 	router.push({
@@ -81,4 +86,16 @@ const edit = (editKey: string, editName: string, currentValue: string) => {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.van-cell {
+	flex-grow: 1;
+}
+
+.user-info-container {
+	display: flex;
+	flex-direction: column;
+	width: 100vh;
+	height: 100vh; /* 设置高度为视口的高度 */
+	padding: 0 20px; /* 添加左右的内边距 */
+}
+</style>
