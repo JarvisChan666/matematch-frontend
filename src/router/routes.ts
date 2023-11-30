@@ -9,8 +9,14 @@ import UserRegisterPage from '../pages/UserRegisterPage.vue';
 import UserLayout from '../layouts/UserLayout.vue'; // Corrected the case
 import { RouteRecordRaw } from 'vue-router';
 import BasicLayout from '../layouts/BasicLayout.vue';
+import IndexPage from '../pages/Index.vue';
 
 export const routes: Array<RouteRecordRaw> = [
+	{
+		path: '/',
+		name: 'Home',
+		component: IndexPage,
+	},
 	{
 		path: '/team',
 		name: 'Team',

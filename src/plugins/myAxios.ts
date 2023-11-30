@@ -3,14 +3,15 @@
 import axios from 'axios';
 
 const myAxios = axios.create({
-	// baseURL: 'https://192.168.43.104:8080/api',
+	// baseURL: 'http://192.168.43.104:8080/api',
 	// baseURL: 'https://localhost:8080/api',
 	baseURL: 'http://localhost:8080/api',
 	// baseURL: 'https://44.226.122.3/api/',
+	withCredentials: true,
 });
 
 // cookie保存登录态
-myAxios.defaults.withCredentials = true;
+// myAxios.defaults.withCredentials = true;
 
 // 拦截器
 // 添加请求拦截器

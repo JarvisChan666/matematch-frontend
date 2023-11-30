@@ -4,8 +4,8 @@ import { routes } from './routes';
 // histroy模式
 const router = createRouter({
 	// history: createWebHistory()
-	history: createWebHistory('/matematch-frontend/'), //githubpage
-	// history: createWebHistory(),
+	// history: createWebHistory('/matematch-frontend/'), //githubpage
+	history: createWebHistory(),
 	routes,
 });
 // 为了给不是vue文件组合式api，比如ts文件中用router，这里将其实例化并导出
