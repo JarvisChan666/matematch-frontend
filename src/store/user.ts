@@ -93,11 +93,14 @@ const useUserStore = defineStore('user', {
 				const { data, code } = res.data;
 				console.log('get current user' + data);
 				if (code === 0) {
+					// 前端只要文字，后端只要数字，两边通信时先转成对方需要的(这里都给前端处理)
+					// Map gender from 0 and 1 to '男' and '女'
+					data.gender = data.gender === 0 ? '男' : '女';
 					return data;
 				} else {
 					// 只有当当前路由不是登录路由时，才显示失败的 Toast 消息
 					const path = router.currentRoute.value.path;
-					if (path !== LOGIN_URL && path != REGISTER_URL) {
+					if (path !== LOGIN_URL && path != REGISTER_URL && path != '/') {
 						showFailToast('获取用户异常');
 					}
 					return false;
@@ -111,10 +114,12 @@ const useUserStore = defineStore('user', {
 		// 要编辑的是editkey字段，当前值为currentValue
 		// editKey=username&editName=昵称&currentValue=jarvis
 		async updateUser(updateUser: userType) {
+			// Map gender from '男' and '女' to 0 and 1
+			updateUser.gender = updateUser.gender === '男' ? 0 : 1;
 			// 是否更新用户用put请求？
 			const res = await axios.post(UPDATE_USER_URL, updateUser);
 			if (res.data.code === 0) {
-				this.userInfo = updateUser;
+				this.userInfo = await this.getCurrentUser();
 				showSuccessToast('更新信息成功');
 			} else {
 				showFailToast('更新信息失败');

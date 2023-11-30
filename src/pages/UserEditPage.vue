@@ -37,6 +37,9 @@ const onSubmit = async () => {
 	// Create a copy of the current userInfo
 	const updatedUser = { ...userStore.userInfo };
 
+	// gender map
+	// Check if the field being updated is 'gender'
+
 	// Update the field
 	updatedUser[editKey] = newValue.value;
 
