@@ -11,6 +11,7 @@
 			@click="edit('username', '昵称', userInfo.username)"
 		/>
 		<van-cell title="账号" :value="userInfo.userAccount" />
+
 		<van-cell
 			title="头像"
 			is-link
@@ -19,6 +20,7 @@
 		>
 			<img :src="userInfo.avatarUrl" style="height: 40px" />
 		</van-cell>
+
 		<!-- TODO 性别男女映射01 -->
 		<van-cell
 			title="性别"
@@ -40,7 +42,7 @@
 			@click="edit('email', '邮箱', userInfo.email)"
 		/>
 		<van-cell title="编号" :value="userInfo.planetCode" />
-		<van-cell title="注册时间" :value="formatDate(userInfo.createTime)" to="/user/edit" />
+		<van-cell title="注册时间" :value="formatDate(userInfo.createTime)" />
 		<van-button round block type="danger" @click="handleLogout"> 退出登录 </van-button>
 		<!-- </div> -->
 		<!-- TODO 优化 -->

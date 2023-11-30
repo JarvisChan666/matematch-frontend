@@ -25,6 +25,21 @@
 				还没有注册？点击这里
 			</router-link>
 		</div>
+		<van-divider />
+		<van-row type="flex" justify="space-around" class="vanRow">
+			<van-col span="6.3">
+				<van-icon class="iconfont" class-prefix="icon" name="githublogo" />
+			</van-col>
+			<van-col span="6.3">
+				<van-icon class="iconfont" class-prefix="icon" name="google" />
+			</van-col>
+			<van-col span="6.3">
+				<van-icon class="iconfont" class-prefix="icon" name="weixin" />
+			</van-col>
+			<van-col span="6.3">
+				<van-icon class="iconfont" class-prefix="icon" name="gitee" />
+			</van-col>
+		</van-row>
 	</van-form>
 </template>
 
@@ -36,6 +51,7 @@ import { provide } from 'vue';
 import { showSuccessToast, showFailToast } from 'vant';
 import { userType } from '../models/user';
 import { USER_INFO_URL } from '../common/constants';
+import '../assets/icon/iconfont.css';
 
 // reactive never use 'value'
 // 封装起来
@@ -74,4 +90,24 @@ const rules = reactive({
 });
 </script>
 
-<style scoped></style>
+<style scoped>
+.iconfont {
+	font-size: 2em; /* 设置图标的大小 */
+}
+
+.github-icon {
+	color: #4078c0; /* GitHub 的颜色 */
+}
+
+.google-icon {
+	color: #4285f4; /* Google 的颜色 */
+}
+
+.weixin-icon {
+	color: #7bb32e; /* 微信的颜色 */
+}
+
+.gitee-icon {
+	color: #c71d23; /* 码云 Gitee 的颜色 */
+}
+</style>
