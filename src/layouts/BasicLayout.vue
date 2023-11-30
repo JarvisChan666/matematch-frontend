@@ -13,7 +13,6 @@ const navigate = {
 		} else {
 			// TODO: Add logic to prevent infinite back navigation
 			router.back();
-			alert(router.currentRoute.value.name);
 		}
 	},
 	toSearch: () => {
@@ -42,7 +41,7 @@ const onClickRight = () => navigate.toSearch();
 		<!-- Search icon on the right side of the navigation bar -->
 		<template #right>
 			<a class="search-btn">
-				<img src="../static/search_icon.svg" alt="Search Icon" />
+				<img src="../assets/icon/search.svg" alt="Search Icon" />
 			</a>
 		</template>
 	</van-nav-bar>
@@ -65,7 +64,7 @@ const onClickRight = () => navigate.toSearch();
 	color: #888888;
 	margin-bottom: 3px;
 	font-size: 24px;
-	width: 20px;
+	width: 50px;
 	height: 40px;
 	border-radius: 50%;
 	display: flex;
@@ -73,6 +72,11 @@ const onClickRight = () => navigate.toSearch();
 	align-items: center;
 	cursor: pointer;
 	transition: 0.4s;
+}
+
+img {
+	width: 50px;
+	height: 30px;
 }
 
 .fixed-nav-bar {
