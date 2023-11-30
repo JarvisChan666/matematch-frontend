@@ -1,23 +1,6 @@
 <template>
 	<!--  TODO 反馈组件添加：Loading加载中。下拉刷新，展示组件骨架屏-->
-	<van-card
-		v-for="user in userList"
-		:desc="user.profile"
-		:title="`${user.username} (${user.planetCode})`"
-		:thumb="user.avatarUrl"
-	>
-		<template #tags>
-			<van-tag v-for="tag in tags" plain type="primary" style="margin-top: 8px">{{ tag }}</van-tag>
-		</template>
-		<template #footer>
-			<van-popover :actions="actions" @select="onSelect">
-				<template #reference>
-					<!--          TODO 展示用户邮箱-->
-					<van-button type="primary" @click="showEmail">TODO获取邮箱</van-button>
-				</template>
-			</van-popover>
-		</template>
-	</van-card>
+	<UserCardList :user-list="userList"/>
 	<van-empty v-if="!userList || userList.length < 1" description="搜索结果为空" />
 </template>
 
@@ -27,6 +10,7 @@ import { useRoute } from 'vue-router';
 import myAxios from '../plugins/myAxios.ts';
 import qs from 'qs';
 import { showToast } from 'vant';
+import UserCardList from '../components/UserCardList.vue';
 
 const showPopover = ref(false);
 
@@ -43,33 +27,38 @@ const showEmail = () => {
 
 const tags = route.query.tags ? route.query.tags.split(',') : [];
 
+const fetchUserList = async() => {
+	 try {
+    const response = await myAxios.get('/user/search/tags', {
+      params: {
+        tagNameList: tags,
+      },
+      paramsSerializer: {
+        serialize: (params) => qs.stringify(params, { indices: false }),
+      },
+    });
+
+    console.log('/user/search/tags succeed', response);
+
+    const userListData = response.data?.data;
+
+    if (userListData) {
+      userListData.forEach((user) => {
+        if (user.tags) {
+          user.tags = JSON.parse(user.tags);
+        }
+      });
+      userList.value = userListData;
+    }
+  } catch (error) {
+    console.log('/user/search/tags error', error);
+		showToast('Failed to fetch user list');
+    // Add more error handling logic here
+  }
+}
+
 onMounted(async () => {
-	const userListData = await myAxios
-		.get('/user/search/tags', {
-			withCredentials: false,
-			params: {
-				tagNameList: tags,
-			},
-			// 前端序列化 前端字符串 后端要数组
-			paramsSerializer: {
-				serialize: (params) => qs.stringify(params, { indices: false }),
-			},
-		})
-		.then(function (response) {
-			console.log('/user/search/tags succeed', response);
-			return response.data?.data;
-		})
-		.catch(function (error) {
-			console.log('/user/search/tags error', error);
-		});
-	if (userListData) {
-		userListData.forEach((user) => {
-			if (user.tags) {
-				user.tags = JSON.parse(user.tags);
-			}
-		});
-		userList.value = userListData;
-	}
+	fetchUserList();
 });
 </script>
 
