@@ -1,8 +1,5 @@
 <template>
 	<div class="user-info-container">
-		<!-- TODO 骨架优化，后端请求到后渲染 -->
-		<!-- <van-skeleton v-if="isLoading" row="4" :animate="true" />
-    <div v-else> -->
 		<van-cell
 			title="昵称"
 			:value="userInfo.username"
@@ -94,11 +91,11 @@ const edit = (editKey: string, editName: string, currentValue: string) => {
 }
 
 .user-info-container {
-    display: flex;
-    flex-direction: column;
-    width: 100vh;
-    height: calc(100vh - 100px); /* 替换 X 为其他元素的总高度 */
-    overflow: auto; /* 添加滚动 */
-    padding: 0 20px; /* 添加左右的内边距 */
+	display: flex;
+	flex-direction: column;
+	width: 100vh;
+	height: calc(100vh - 100px); /* 替换 X 为其他元素的总高度 */
+	overflow: auto; /* 添加滚动 */
+	padding: 0 20px; /* 添加左右的内边距 */
 }
 </style>
