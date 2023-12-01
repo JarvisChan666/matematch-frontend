@@ -1,23 +1,7 @@
 <template>
-	<!--  TODO 反馈组件添加：Loading加载中。下拉刷新，展示组件骨架屏-->
-	<van-skeleton :loading="loading" title :row="3">
+	<UserCardSkeleton :loading="loading">
 		<UserCardList :user-list="userList" />
-		<template #template>
-			<div :style="{ display: 'flex', width: '100%' }">
-				<van-skeleton title avatar avatar-size="80px" :row="3" />
-				<div :style="{ flex: 1, marginLeft: '16px' }">
-					<van-skeleton-paragraph row-width="60%" />
-					<van-skeleton-paragraph />
-					<van-skeleton-paragraph />
-					<van-skeleton-paragraph />
-				</div>
-			</div>
-		</template>
-	</van-skeleton>
-	<van-empty
-		v-if="!loading && (!userList || userList.length < 1)"
-		description="搜索结果为空"
-	/>
+	</UserCardSkeleton>
 </template>
 
 <script setup>
@@ -27,7 +11,7 @@ import myAxios from '../plugins/myAxios.ts';
 import qs from 'qs';
 import { showToast } from 'vant';
 import UserCardList from '../components/UserCardList.vue';
-import { component as VueLazyComponent } from '@xunlei/vue-lazy-component';
+import UserCardSkeleton from '../components/UserCardSkeleton.vue';
 import { Skeleton } from 'vant';
 
 const showPopover = ref(false);

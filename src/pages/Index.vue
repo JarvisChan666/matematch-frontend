@@ -1,7 +1,7 @@
 <template>
-	<!--  TODO 反馈组件添加：Loading加载中。下拉刷新，展示组件骨架屏-->
-	<UserCardList :user-list="userList" />
-	<van-empty v-if="!userList || userList.length < 1" description="搜索结果为空" />
+	<UserCardListSkeleton :loading="loading">
+		<UserCardList :user-list="userList" />
+	</UserCardListSkeleton>
 </template>
 
 <script setup>
@@ -12,6 +12,7 @@ import qs from 'qs';
 import { showToast } from 'vant';
 import UserCardList from '../components/UserCardList.vue';
 import { watch } from 'vue';
+import { Skeleton } from 'vant';
 
 const showPopover = ref(false);
 
@@ -30,7 +31,9 @@ const tags = route.query.tags ? route.query.tags.split(',') : [];
 
 const pageNum = ref(1); // 当前页数
 
-let isLoading = false; // 新增：数据是否正在加载
+let loading = ref(true);
+
+let isLoading = false; // 数据是否正在加载，防止无限加载
 // Fetch user list from API
 // 分页查询，一页10个
 const fetchUserList = async () => {
@@ -75,9 +78,10 @@ const checkScroll = () => {
 onMounted(async () => {
 	// 第一次加载数据
 	await fetchUserList();
-
+	// 当数据加载完成后，将 isDataLoading 设置为 false
+	loading.value = false;
 	// 监听滚动事件
-	window.addEventListener('scroll', checkScroll, { passive: true });
+	window.addEventListener('scroll', checkScroll);
 });
 
 onUnmounted(() => {
