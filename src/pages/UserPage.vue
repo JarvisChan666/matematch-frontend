@@ -94,10 +94,11 @@ const edit = (editKey: string, editName: string, currentValue: string) => {
 }
 
 .user-info-container {
-	display: flex;
-	flex-direction: column;
-	width: 100vh;
-	height: 100vh; /* 设置高度为视口的高度 */
-	padding: 0 20px; /* 添加左右的内边距 */
+    display: flex;
+    flex-direction: column;
+    width: 100vh;
+    height: calc(100vh - 100px); /* 替换 X 为其他元素的总高度 */
+    overflow: auto; /* 添加滚动 */
+    padding: 0 20px; /* 添加左右的内边距 */
 }
 </style>
