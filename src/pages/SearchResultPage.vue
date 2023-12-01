@@ -14,8 +14,10 @@
 			</div>
 		</template>
 	</van-skeleton>
-	<!-- <UserCardList :user-list="userList" /> -->
-	<!-- <van-empty v-if="!userList || userList.length < 1" description="搜索结果为空" /> -->
+	<van-empty
+		v-if="!loading && (!userList || userList.length < 1)"
+		description="搜索结果为空"
+	/>
 </template>
 
 <script setup>
